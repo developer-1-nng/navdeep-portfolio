@@ -100,6 +100,16 @@ const PORTFOLIO_DATA = {
       demo: '#',
     },
     {
+      emoji: '🔍',
+      gradient: 'linear-gradient(135deg,#0D1320,#1a0d0d)',
+      title: 'Crime Intelligence System',
+      featured: false,
+      description: 'Angular 19 application for crime data analysis and intelligence reporting. Built with component-based architecture, TypeScript, and SCSS — showcasing structured data presentation and clean UI design.',
+      tech: ['Angular 19', 'TypeScript', 'SCSS', 'HTML5', 'Angular CLI'],
+      github: 'https://github.com/developer-1-nng/crime-intelligence-system',
+      demo: 'https://crime-intelligence-system.vercel.app/',
+    },
+    {
       emoji: '📊',
       gradient: 'linear-gradient(135deg,#0D1320,#1a3020)',
       title: 'Interactive Analytics Dashboard',
@@ -257,24 +267,24 @@ PORTFOLIO_DATA.certifications.forEach((cert, i) => {
 /* ═══════════════════════════════════════════════════
    TYPING ANIMATION
 ═══════════════════════════════════════════════════ */
-(function(){
+(function () {
   const el = document.getElementById('typedText');
   const phrases = PORTFOLIO_DATA.typingPhrases;
   let pi = 0, ci = 0, deleting = false;
-  function type(){
+  function type() {
     const phrase = phrases[pi];
-    if(!deleting){
-      el.textContent = phrase.slice(0,++ci);
-      if(ci === phrase.length){
+    if (!deleting) {
+      el.textContent = phrase.slice(0, ++ci);
+      if (ci === phrase.length) {
         deleting = true;
         setTimeout(type, 1800);
         return;
       }
     } else {
-      el.textContent = phrase.slice(0,--ci);
-      if(ci === 0){
+      el.textContent = phrase.slice(0, --ci);
+      if (ci === 0) {
         deleting = false;
-        pi = (pi+1) % phrases.length;
+        pi = (pi + 1) % phrases.length;
         setTimeout(type, 400);
         return;
       }
@@ -287,13 +297,13 @@ PORTFOLIO_DATA.certifications.forEach((cert, i) => {
 /* ═══════════════════════════════════════════════════
    COUNTER ANIMATION
 ═══════════════════════════════════════════════════ */
-function animateCounter(el, target, duration=1600){
+function animateCounter(el, target, duration = 1600) {
   let start = null;
-  function step(ts){
-    if(!start) start = ts;
-    const p = Math.min((ts-start)/duration,1);
+  function step(ts) {
+    if (!start) start = ts;
+    const p = Math.min((ts - start) / duration, 1);
     el.textContent = Math.floor(p * target);
-    if(p < 1) requestAnimationFrame(step);
+    if (p < 1) requestAnimationFrame(step);
     else el.textContent = target;
   }
   requestAnimationFrame(step);
@@ -304,33 +314,33 @@ function animateCounter(el, target, duration=1600){
 ═══════════════════════════════════════════════════ */
 const revealObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){
+    if (e.isIntersecting) {
       e.target.classList.add('visible');
       /* skill bar fill */
       const fill = e.target.querySelector('.skill-level-fill');
-      if(fill){
+      if (fill) {
         const lvl = fill.dataset.level / 100;
         fill.style.transform = `scaleX(${lvl})`;
       }
       revealObs.unobserve(e.target);
     }
   });
-}, {threshold:0.12});
+}, { threshold: 0.12 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
 /* counter observer */
 const counterObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){
+    if (e.isIntersecting) {
       animateCounter(document.getElementById('counter-years'), PORTFOLIO_DATA.counters.years);
       animateCounter(document.getElementById('counter-projects'), PORTFOLIO_DATA.counters.projects);
       animateCounter(document.getElementById('counter-apps'), PORTFOLIO_DATA.counters.apps);
       counterObs.disconnect();
     }
   });
-}, {threshold:0.5});
+}, { threshold: 0.5 });
 const heroStats = document.querySelector('.hero-stats');
-if(heroStats) counterObs.observe(heroStats);
+if (heroStats) counterObs.observe(heroStats);
 
 /* ═══════════════════════════════════════════════════
    NAVBAR SCROLL + SMOOTH SCROLL
@@ -369,7 +379,7 @@ document.getElementById('themeToggle').addEventListener('click', () => {
 });
 /* Restore saved theme */
 const saved = localStorage.getItem('theme');
-if(saved) document.documentElement.dataset.theme = saved;
+if (saved) document.documentElement.dataset.theme = saved;
 
 /* ═══════════════════════════════════════════════════
    MOBILE MENU
@@ -385,13 +395,13 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
    SCROLL TO TOP
 ═══════════════════════════════════════════════════ */
 document.getElementById('scrollTop').addEventListener('click', () => {
-  window.scrollTo({top:0, behavior:'smooth'});
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 /* ═══════════════════════════════════════════════════
    CONTACT FORM
 ═══════════════════════════════════════════════════ */
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
   const btn = this.querySelector('.btn-submit');
@@ -438,12 +448,12 @@ const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');
 const spyObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){
+    if (e.isIntersecting) {
       navLinks.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#'+e.target.id
+        a.style.color = a.getAttribute('href') === '#' + e.target.id
           ? 'var(--blue-400)' : '';
       });
     }
   });
-}, {threshold:0.4});
+}, { threshold: 0.4 });
 sections.forEach(s => spyObs.observe(s));
