@@ -144,6 +144,12 @@ const PORTFOLIO_DATA = {
 };
 
 /* ═══════════════════════════════════════════════════
+   FORM VARS
+═══════════════════════════════════════════════════ */
+
+const FORMSPREE_URL = "https://formspree.io/f/mwvzqeqd"
+
+/* ═══════════════════════════════════════════════════
    RENDER SKILLS
 ═══════════════════════════════════════════════════ */
 const skillsGrid = document.getElementById('skillsGrid');
@@ -245,6 +251,8 @@ PORTFOLIO_DATA.certifications.forEach((cert, i) => {
     </div>
   `;
 });
+
+
 
 /* ═══════════════════════════════════════════════════
    TYPING ANIMATION
@@ -383,17 +391,44 @@ document.getElementById('scrollTop').addEventListener('click', () => {
 /* ═══════════════════════════════════════════════════
    CONTACT FORM
 ═══════════════════════════════════════════════════ */
-document.getElementById('contactForm').addEventListener('submit', function(e){
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+
   const btn = this.querySelector('.btn-submit');
-  btn.textContent = 'Sending…';
+  const success = document.getElementById('formSuccess');
+
+  btn.textContent = 'Sending...';
   btn.disabled = true;
-  /* ✏️ EDIT: Replace with actual form submission (EmailJS, Formspree, etc.) */
+
+  const formData = new FormData(this);
+
+  try {
+    const response = await fetch(FORMSPREE_URL, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      success.style.display = 'block';
+      this.reset();
+      btn.textContent = 'Message Sent!';
+    } else {
+      btn.textContent = 'Failed';
+      alert('Something went wrong.');
+    }
+
+  } catch (error) {
+    btn.textContent = 'Error';
+    alert('Network error.');
+  }
+
   setTimeout(() => {
-    document.getElementById('formSuccess').style.display = 'block';
-    btn.style.display = 'none';
-    this.querySelectorAll('input,textarea').forEach(el => el.value = '');
-  }, 1200);
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+  }, 3000);
 });
 
 /* ═══════════════════════════════════════════════════
