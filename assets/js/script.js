@@ -96,8 +96,8 @@ const PORTFOLIO_DATA = {
       featured: true,
       description: 'Drag-and-drop Angular form designer with field placement, resizing, and nested layouts using Angular Gridster. Features real-time preview, configuration panel, and JSON schema generation for backend-driven form rendering.',
       tech: ['Angular', 'TypeScript', 'Angular Material', 'Angular Gridster', 'JSON Schema'],
-      github: 'https://github.com/developer-1-nng',
-      demo: '#',
+      github: 'https://github.com/developer-1-nng/form-designer',
+      demo: 'https://form-designer-eight.vercel.app/',
     },
     {
       emoji: '🔍',
