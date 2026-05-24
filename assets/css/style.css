@@ -647,8 +647,9 @@ section{padding:6rem 0}
 }
 .timeline-item:last-child{padding-bottom:0}
 .timeline-dot{
-  position:absolute;left:-2.25rem;
-  top:.2rem;
+  position:absolute;
+  left: -2.5rem;
+  top: 3.2rem;
   width:18px;height:18px;
   background:var(--blue-500);
   border-radius:50%;

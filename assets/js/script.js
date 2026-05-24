@@ -116,8 +116,8 @@ const PORTFOLIO_DATA = {
       featured: false,
       description: 'Data-driven analytics platform with rich visualizations built using D3.js, dc.js, and amCharts. Features cross-filtering, drill-downs, and real-time data updates via reactive RxJS streams.',
       tech: ['Angular', 'D3.js', 'dc.js', 'amCharts', 'RxJS', 'REST APIs'],
-      github: 'https://github.com/developer-1-nng',
-      demo: '#',
+      github: 'https://github.com/developer-1-nng/analytics-dashboard',
+      demo: 'https://analytics-dashboard-tau-kohl.vercel.app/',
     },
     {
       emoji: '🔐',
